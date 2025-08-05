@@ -1030,7 +1030,7 @@ $saldo = $usuario['balance'];?>
       <ul class="flex gap-8 text-sm">
         <li><a href="/raspadinhas" class="nav-link hover:text-white-300">Início</a></li>
         <li><a href="/raspadinhas" class="nav-link hover:text-white-300">Raspadinhas</a></li>
-        <li><a href="#como-funciona" class="nav-link hover:text-white-300">Como Funciona</a></li>
+        <li><a href="/como-funciona" class="nav-link hover:text-white-300">Como Funciona</a></li>
         <li><a href="/premios" class="nav-link hover:text-white-300">Ganhadores</a></li>
       </ul>
       
@@ -1258,7 +1258,7 @@ $saldo = $usuario['balance'];?>
         <p class="prize-text">Prêmios até<br>R$ 1.000,00 NO PIX</p>
         <span class="price-badge green">R$ 1,00</span>
         <p class="game-description">Sonho de Consumo 😍<br>Prêmio até: R$ 1.000,00</p>
-        <a href="../jogo.php?valor=1" class="play-button">
+        <a href="../jogo/?valor=1" class="play-button">
           <i class="fas fa-play mr-2"></i>
           JOGAR AGORA
         </a>
@@ -1305,7 +1305,7 @@ $saldo = $usuario['balance'];?>
         <p class="prize-text">Prêmios até<br>R$ 5.000,00 NO PIX</p>
         <span class="price-badge orange">R$ 5,00</span>
         <p class="game-description">Raspe da Emoção<br>Prêmio até: R$ 5.000,00</p>
-        <a href="../jogo.php?valor=5" class="play-button">
+        <a href="../jogo/?valor=5" class="play-button">
           <i class="fas fa-play mr-2"></i>
           JOGAR AGORA
         </a>
@@ -1346,7 +1346,7 @@ $saldo = $usuario['balance'];?>
         <p class="prize-text">Prêmios até<br>R$ 6.300,00 NO PIX</p>
          <span class="price-badge red">R$ 10,00</span>
         <p class="game-description">Me mimei<br>Prêmio até: R$ 6.300,00</p>
-        <a href="../jogo.php?valor=10" class="play-button">
+        <a href="../jogo/?valor=10" class="play-button">
           <i class="fas fa-play mr-2"></i>
           JOGAR AGORA
         </a>
@@ -1393,7 +1393,7 @@ $saldo = $usuario['balance'];?>
         <p class="prize-text">Prêmios até<br>R$ 7.500,00 NO PIX</p>
          <span class="price-badge" style="background: linear-gradient(135deg, #8b5cf6, #a855f7); color: white;">R$ 20,00</span>
         <p class="game-description">Super Prêmios<br>Prêmio até: R$ 7.000,00</p>
-        <a href="../jogo.php?valor=20" class="play-button">
+        <a href="../jogo/?valor=20" class="play-button">
           <i class="fas fa-play mr-2"></i>
           JOGAR AGORA
         </a>
@@ -1435,7 +1435,7 @@ $saldo = $usuario['balance'];?>
         <p class="prize-text">Prêmios até<br>R$ 11.000,00 NO PIX</p>
         <span class="price-badge green">R$ 50,00</span>
         <p class="game-description">Sonho de Consumo 😍<br>Prêmio até: R$ 11.000,00</p>
-        <a href="../jogo.php?valor=50" class="play-button">
+        <a href="../jogo/?valor=50" class="play-button">
           <i class="fas fa-play mr-2"></i>
           JOGAR AGORA
         </a>
@@ -1481,13 +1481,13 @@ $saldo = $usuario['balance'];?>
         <p class="prize-text">Prêmios até<br>R$ 14.000,00 NO PIX</p>
         <span class="price-badge green">R$ 100,00</span>
         <p class="game-description">Sonho de Consumo 😍<br>Prêmio até: R$ 14.000,00</p>
-        <a href="../jogo.php?valor=100" class="play-button">
+        <a href="../jogo/?valor=100" class="play-button">
           <i class="fas fa-play mr-2"></i>
           JOGAR AGORA
         </a>
 
     <!-- BOTÃO (mais abaixo) -->
-    <a href="../jogo.php?valor=1" class="">
+    <a href="../jogo/?valor=1" class="">
      
     </a>
 

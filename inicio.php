@@ -1344,7 +1344,7 @@ if ($usuarioLogado) {
                         <span class="price-badge green">R$ 1,00</span>
                         <p class="game-description">Sonho de Consumo 😍<br>Prêmio até: R$ 1.000,00</p>
                         <?php if ($usuarioLogado): ?>
-                            <a href="jogo.php?valor=1" class="play-button">
+                            <a href="jogo/?valor=1" class="play-button">
                                 <i class="fas fa-play mr-2"></i> JOGAR AGORA
                             </a>
                         <?php else: ?>
@@ -1361,7 +1361,7 @@ if ($usuarioLogado) {
                         <span class="price-badge orange">R$ 5,00</span>
                         <p class="game-description">Raspe da Emoção<br>Prêmio até: R$ 5.000,00</p>
                         <?php if ($usuarioLogado): ?>
-                            <a href="jogo.php?valor=5" class="play-button">
+                            <a href="jogo/?valor=5" class="play-button">
                                 <i class="fas fa-play mr-2"></i> JOGAR AGORA
                             </a>
                         <?php else: ?>
@@ -1378,7 +1378,7 @@ if ($usuarioLogado) {
                         <span class="price-badge red">R$ 10,00</span>
                         <p class="game-description">Me mimei<br>Prêmio até: R$ 6.300,00</p>
                         <?php if ($usuarioLogado): ?>
-                            <a href="jogo.php?valor=10" class="play-button">
+                            <a href="jogo/?valor=10" class="play-button">
                                 <i class="fas fa-play mr-2"></i> JOGAR AGORA
                             </a>
                         <?php else: ?>
@@ -1395,7 +1395,7 @@ if ($usuarioLogado) {
                         <span class="price-badge" style="background: linear-gradient(135deg, #8b5cf6, #a855f7); color: white;">R$ 20,00</span>
                         <p class="game-description">Super Prêmios<br>Prêmio até: R$ 7.000,00</p>
                         <?php if ($usuarioLogado): ?>
-                            <a href="jogo.php?valor=20" class="play-button">
+                            <a href="jogo/?valor=20" class="play-button">
                                 <i class="fas fa-play mr-2"></i> JOGAR AGORA
                             </a>
                         <?php else: ?>
@@ -1412,7 +1412,7 @@ if ($usuarioLogado) {
                         <span class="price-badge green">R$ 50,00</span>
                         <p class="game-description">Sonho de Consumo 😍<br>Prêmio até: R$ 11.000,00</p>
                         <?php if ($usuarioLogado): ?>
-                            <a href="jogo.php?valor=50" class="play-button">
+                            <a href="jogo/?valor=50" class="play-button">
                                 <i class="fas fa-play mr-2"></i> JOGAR AGORA
                             </a>
                         <?php else: ?>
@@ -1429,7 +1429,7 @@ if ($usuarioLogado) {
                         <span class="price-badge green">R$ 100,00</span>
                         <p class="game-description">Sonho de Consumo 😍<br>Prêmio até: R$ 14.000,00</p>
                         <?php if ($usuarioLogado): ?>
-                            <a href="jogo.php?valor=100" class="play-button">
+                            <a href="jogo/?valor=100" class="play-button">
                                 <i class="fas fa-play mr-2"></i> JOGAR AGORA
                             </a>
                         <?php else: ?>

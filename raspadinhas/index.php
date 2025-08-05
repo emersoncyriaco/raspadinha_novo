@@ -1030,7 +1030,7 @@ $saldo = $usuario['balance'];?>
       <ul class="flex gap-8 text-sm">
         <li><a href="/raspadinhas" class="nav-link hover:text-white-300">Início</a></li>
         <li><a href="/tabela" class="nav-link hover:text-white-300">Raspadinhas</a></li>
-        <li><a href="#como-funciona" class="nav-link hover:text-white-300">Como Funciona</a></li>
+        <li><a href="/como-funciona" class="nav-link hover:text-white-300">Como Funciona</a></li>
         <li><a href="/premios" class="nav-link hover:text-white-300">Ganhadores</a></li>
       </ul>
       
