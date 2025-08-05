@@ -1,0 +1,284 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #8B5CF6, #A855F7);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.game-container {
+    background: rgba(139, 92, 246, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.banner {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.balance-button {
+    background: #22C55E;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-scratch-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.main-scratch-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.main-scratch-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.scratch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.5s ease;
+}
+
+.scratch-grid.hidden {
+    display: none;
+}
+
+.scratch-grid.visible {
+    display: grid;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scratch-area {
+    aspect-ratio: 1;
+    background: white;
+    border: 2px solid #22C55E;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 80px;
+}
+
+.scratch-area.prize {
+    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+    border-color: #F59E0B;
+    color: #92400E;
+}
+
+.scratch-area.emoji {
+    background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+    border-color: #3B82F6;
+    color: #1E40AF;
+    font-size: 24px;
+}
+
+.scratch-area.nothing {
+    background: linear-gradient(135deg, #FEE2E2, #FECACA);
+    border-color: #EF4444;
+    color: #991B1B;
+}
+
+.footer {
+    text-align: center;
+}
+
+.message {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    min-height: 20px;
+}
+
+.play-again-button {
+    max-width: 180px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: none;
+}
+
+.play-again-button:hover {
+    transform: scale(1.05);
+}
+
+.play-again-button.visible {
+    display: inline-block;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .game-container {
+        padding: 15px;
+        max-width: 350px;
+    }
+    
+    .banner {
+        max-width: 250px;
+    }
+    
+    .balance-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .main-scratch-image {
+        max-width: 280px;
+    }
+    
+    .scratch-grid {
+        max-width: 280px;
+        gap: 6px;
+    }
+    
+    .scratch-area {
+        font-size: 14px;
+        min-height: 70px;
+    }
+    
+    .scratch-area.emoji {
+        font-size: 20px;
+    }
+    
+    .message {
+        font-size: 14px;
+    }
+    
+    .play-again-button {
+        max-width: 160px;
+    }
+}
+
+/* Responsividade para tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .game-container {
+        max-width: 450px;
+        padding: 25px;
+    }
+    
+    .main-scratch-image {
+        max-width: 350px;
+    }
+    
+    .scratch-grid {
+        max-width: 350px;
+        gap: 10px;
+    }
+    
+    .scratch-area {
+        font-size: 18px;
+        min-height: 90px;
+    }
+    
+    .scratch-area.emoji {
+        font-size: 26px;
+    }
+}
+
+/* Responsividade para desktop */
+@media (min-width: 769px) {
+    .game-container {
+        max-width: 500px;
+        padding: 30px;
+    }
+    
+    .banner {
+        max-width: 320px;
+    }
+    
+    .balance-button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    .main-scratch-image {
+        max-width: 380px;
+    }
+    
+    .scratch-grid {
+        max-width: 380px;
+        gap: 12px;
+    }
+    
+    .scratch-area {
+        font-size: 20px;
+        min-height: 100px;
+    }
+    
+    .scratch-area.emoji {
+        font-size: 28px;
+    }
+    
+    .message {
+        font-size: 18px;
+    }
+    
+    .play-again-button {
+        max-width: 200px;
+    }
+}
+

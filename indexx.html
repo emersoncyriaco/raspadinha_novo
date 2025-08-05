@@ -1,0 +1,636 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require '../includes/db.php';
+require '../includes/auth.php';
+
+$userId = $_SESSION['usuario_id'] ?? null;
+if (!$userId) {
+  header("Location: ../login.php");
+  exit;
+}
+
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+$usuario = $result->fetch_assoc();
+$saldo = $usuario['balance'];
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Raspa Sorte - Escolha sua Raspadinha</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-purple: #7257b4;
+      --dark-blue: #202c3e;
+      --light-blue: #6876df;
+      --accent-yellow: #fbbf24;
+      --success-green: #10b981;
+      --mobile-padding: clamp(12px, 4vw, 24px );
+      --mobile-gap: clamp(8px, 2vw, 16px);
+    }
+    
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: linear-gradient(135deg, var(--dark-blue) 0%, #1e293b 100%);
+      padding-bottom: 80px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: filter 0.3s ease;
+    }
+
+    body.modal-open > *:not(#modalDeposito):not(#qrMode){
+      filter: blur(5px);
+      transition: filter 0.3s ease;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    body.modal-open .desktop-nav,
+    body.modal-open .bottom-navbar {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    body.modal-open .bottom-navbar {
+      transform: translateY(100%);
+    }
+    
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+    }
+    
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: clamp(100px, 35vw, 350px);
+      overflow: hidden;
+      border-radius: clamp(20px, 3vw, 1px);
+      margin: 0 auto;
+      background: transparent;
+      touch-action: pan-y;
+    }
+    
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .carousel-slide.active {
+      opacity: 1;
+    }
+    
+    .carousel-indicators {
+      position: absolute;
+      bottom: clamp(10px, 3vw, 20px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: clamp(6px, 2vw, 12px);
+      z-index: 10;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        transform: scale(0.8);
+    }
+
+    .indicator.active {
+      background: white;
+      transform: scale(1.2);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    }
+    
+    .raspadinha-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(16px, 4vw, 24px);
+      padding: 0 var(--mobile-padding);
+    }
+    
+    .raspadinha-card {
+      background: linear-gradient(145deg, #2a2a3e, #1e1e2e);
+      border-radius: clamp(14px, 3vw, 20px);
+      padding: clamp(16px, 4vw, 24px);
+      border: 2px solid transparent;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .raspadinha-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(82, 252, 96, 0.4);
+    }
+    
+    .price-badge {
+      display: inline-block;
+      padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 18px);
+      border-radius: clamp(16px, 4vw, 24px);
+      font-weight: 800;
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+      margin-bottom: clamp(12px, 3vw, 18px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .price-badge.green { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+    .price-badge.orange { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+    .price-badge.red { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+    
+    .prize-text {
+      color: #fbbf24;
+      font-weight: 700;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      margin-bottom: clamp(8px, 2vw, 12px);
+    }
+    
+    .game-description {
+      color: #e2e8f0;
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+      margin-bottom: clamp(16px, 4vw, 24px);
+      opacity: 0.9;
+    }
+    
+    .play-button {
+      background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+      color: white;
+      font-weight: 800;
+      padding: clamp(12px, 3vw, 16px) 0;
+      border-radius: clamp(16px, 4vw, 24px);
+      text-decoration: none;
+      display: block;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      text-align: center;
+    }
+
+    .play-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+    }
+    
+    .bottom-navbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-around;
+      padding: clamp(8px, 2vw, 12px) 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @media (min-width: 768px) { .bottom-navbar { display: none; } }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .nav-item.active, .nav-item:hover { color: white; }
+    .nav-item i { font-size: clamp(18px, 4vw, 22px); margin-bottom: 4px; }
+    .nav-item span { font-size: clamp(10px, 2.5vw, 12px); font-weight: 500; }
+    
+    .desktop-nav {
+      background: rgba(30, 41, 59, 0.98);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: clamp(0.75rem, 2vw, 1.25rem) var(--mobile-padding);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .modal-overlay {
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+    }
+    
+    .modal-content {
+      background: #1e293b;
+      color: white;
+      border-radius: clamp(16px, 4vw, 20px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      max-width: clamp(300px, 90vw, 400px);
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .modal-input {
+      width: 100%;
+      padding: clamp(12px, 3vw, 16px);
+      border: 2px solid #334155;
+      border-radius: clamp(8px, 2vw, 12px);
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      background-color: #0f172a;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-input:focus {
+      outline: none;
+      border-color: var(--success-green);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+    
+    .modal-button {
+      background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+      color: white;
+      font-weight: 700;
+      padding: clamp(12px, 3vw, 16px);
+      border-radius: clamp(8px, 2vw, 12px);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .cancel-button {
+      background: #475569;
+      color: white;
+      font-weight: 600;
+      padding: clamp(10px, 2.5vw, 14px);
+      border-radius: clamp(8px, 2vw, 12px);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .qr-mode {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--mobile-padding);
+    }
+
+    .qr-container {
+      background: #1e293b;
+      color: white;
+      border-radius: clamp(20px, 5vw, 24px);
+      padding: clamp(24px, 6vw, 32px);
+      max-width: clamp(320px, 90vw, 400px);
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .qr-code-wrapper {
+      background: white;
+      border-radius: clamp(16px, 4vw, 20px);
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .qr-copy-btn {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .qr-copy-btn.copied {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+    .qr-cancel-btn {
+      background: #475569;
+      color: white;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="text-white min-h-screen">
+  
+  <nav class="desktop-nav">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
+          <i class="fas fa-coins text-white text-sm"></i>
+        </div>
+        <h1 class="text-purple-400 font-extrabold text-xl">Raspa Sorte</h1>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-4">
+        <span class="bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+          R$ <?= htmlspecialchars(number_format($saldo, 2, ',', '.')) ?>
+        </span>
+        <button onclick="abrirDeposito()" class="bg-emerald-500 hover:bg-emerald-600 px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2">
+          <i class="fas fa-dollar-sign"></i> Depositar
+        </button>
+        <a href="../perfil.php" class="text-gray-300 hover:text-white transition-colors">
+            <i class="fas fa-user-circle text-2xl"></i>
+        </a>
+        <a href="../logout.php" class="text-gray-300 hover:text-white transition-colors">
+            <i class="fas fa-sign-out-alt text-2xl"></i>
+        </a>
+      </div>
+
+      <div class="md:hidden flex items-center gap-2">
+        <span class="bg-green-700 text-white px-3 py-1.5 rounded-md text-xs font-semibold">
+          R$ <?= htmlspecialchars(number_format($saldo, 2, ',', '.')) ?>
+        </span>
+        <button onclick="abrirDeposito()" class="bg-yellow-500 text-black px-3 py-1.5 rounded-md text-xs font-bold">
+          Depositar
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto py-8">
+    <section class="px-4 mb-8">
+      <div class="carousel-container">
+        <div class="carousel-slide active" style="background-image: url('https://i.ibb.co/ynjjLXrZ/1752257985-1.webp' );"></div>
+        <div class="carousel-slide" style="background-image: url('https://i.ibb.co/XBDRyhQ/1752257991-1.webp' );"></div>
+        <div class="carousel-slide" style="background-image: url('https://i.ibb.co/ynjjLXrZ/1752257985-1.webp' );"></div>
+        <div class="carousel-indicators">
+          <div class="indicator active" onclick="goToSlide(0)"></div>
+          <div class="indicator" onclick="goToSlide(1)"></div>
+          <div class="indicator" onclick="goToSlide(2)"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="raspadinha-grid">
+      <div class="raspadinha-card">
+        <img src="https://i.ibb.co/xtc7XYtD/2.png" alt="Raspadinha 1 Real" class="w-full h-24 object-cover rounded-lg mb-4">
+        <span class="price-badge green">R$ 1,00</span>
+        <p class="prize-text">Prêmios até R$ 1.000,00</p>
+        <p class="game-description">Sonho de Consumo</p>
+        <a href="../jogo.php?valor=1" class="play-button">JOGAR AGORA</a>
+      </div>
+
+      <div class="raspadinha-card">
+        <img src="https://i.ibb.co/FRLNyjT/3.png" alt="Raspadinha 5 Reais" class="w-full h-24 object-cover rounded-lg mb-4">
+        <span class="price-badge orange">R$ 5,00</span>
+        <p class="prize-text">Prêmios até R$ 5.000,00</p>
+        <p class="game-description">Raspe da Emoção</p>
+        <a href="../jogo.php?valor=5" class="play-button">JOGAR AGORA</a>
+      </div>
+
+      <div class="raspadinha-card">
+        <img src="https://i.ibb.co/HTzqtMnt/1.png" alt="Raspadinha 10 Reais" class="w-full h-24 object-cover rounded-lg mb-4">
+        <span class="price-badge red">R$ 10,00</span>
+        <p class="prize-text">Prêmios até R$ 10.000,00</p>
+        <p class="game-description">Me mimei</p>
+        <a href="../jogo.php?valor=10" class="play-button">JOGAR AGORA</a>
+      </div>
+
+      <div class="raspadinha-card">
+        <img src="https://i.ibb.co/KjKHvr6R/4.png" alt="Raspadinha 20 Reais" class="w-full h-24 object-cover rounded-lg mb-4">
+        <span class="price-badge" style="background: linear-gradient(135deg, #8b5cf6, #a855f7 ); color: white;">R$ 20,00</span>
+        <p class="prize-text">Prêmios até R$ 20.000,00</p>
+        <p class="game-description">Super Prêmios</p>
+        <a href="../jogo.php?valor=20" class="play-button">JOGAR AGORA</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-navbar">
+    <a href="#" class="nav-item active">
+      <i class="fas fa-home"></i>
+      <span>Início</span>
+    </a>
+    <a href="../jogo.php" class="nav-item">
+      <i class="fas fa-ticket-alt"></i>
+      <span>Jogar</span>
+    </a>
+    <a href="/premios" class="nav-item">
+      <i class="fas fa-trophy"></i>
+      <span>Prêmios</span>
+    </a>
+    <a href="../perfil.php" class="nav-item">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </a>
+    <div class="nav-item" onclick="abrirDeposito()">
+      <i class="fas fa-plus-circle"></i>
+      <span>Depositar</span>
+    </div>
+  </div>
+
+  <div id="modalDeposito" class="fixed inset-0 modal-overlay flex items-center justify-center z-[10000] hidden">
+    <div class="modal-content p-6">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold mb-2">Depositar via Pix</h2>
+        <p class="text-gray-400">Adicione saldo de forma rápida e segura.</p>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-semibold mb-2">Valor do Depósito</label>
+        <input id="valorDeposito" type="number" min="1" step="0.01" placeholder="Mínimo R$ 1,00" class="modal-input" />
+      </div>
+      <button onclick="gerarPix()" class="modal-button mb-4">Gerar Código Pix</button>
+      <button onclick="fecharDeposito()" class="cancel-button">Cancelar</button>
+    </div>
+  </div>
+
+  <div id="qrMode" class="qr-mode hidden">
+    <div class="qr-container">
+      <div class="text-center mb-4">
+        <h2 class="text-xl font-bold">Pague com Pix</h2>
+        <p class="text-gray-400">Escaneie ou copie o código abaixo.</p>
+      </div>
+      <div class="qr-code-wrapper">
+        <canvas id="qrCodeCanvas"></canvas>
+      </div>
+      <div class="flex flex-col gap-3">
+        <button id="qrCopyBtn" class="qr-copy-btn">
+          <i class="fas fa-copy"></i>
+          Copiar código Pix
+        </button>
+        <button onclick="fecharQRMode()" class="qr-cancel-btn">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Gerenciamento de Modais ---
+    const modalDeposito = document.getElementById('modalDeposito');
+    const qrMode = document.getElementById('qrMode');
+    const body = document.body;
+
+    function abrirDeposito() {
+      modalDeposito.classList.remove('hidden');
+      body.classList.add('modal-open');
+    }
+
+    function fecharDeposito() {
+      modalDeposito.classList.add('hidden');
+      body.classList.remove('modal-open');
+    }
+
+    function abrirQRMode(pixCode) {
+      fecharDeposito();
+      
+      const qrCanvas = document.getElementById('qrCodeCanvas');
+      QRCode.toCanvas(qrCanvas, pixCode, { width: 250, margin: 1 }, function (error) {
+        if (error) console.error(error);
+      });
+
+      document.getElementById('qrCopyBtn').onclick = () => copiarPixCode(pixCode);
+      
+      qrMode.classList.remove('hidden');
+      body.classList.add('modal-open');
+    }
+
+    function fecharQRMode() {
+      qrMode.classList.add('hidden');
+      body.classList.remove('modal-open');
+    }
+
+    function copiarPixCode(codigo) {
+      navigator.clipboard.writeText(codigo).then(() => {
+        const copyBtn = document.getElementById('qrCopyBtn');
+        const originalText = copyBtn.innerHTML;
+        copyBtn.classList.add('copied');
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = originalText;
+        }, 2000);
+      }).catch(() => alert("Erro ao copiar o código Pix."));
+    }
+
+    // --- Lógica de Geração do PIX ---
+    async function gerarPix() {
+      const valorInput = document.getElementById('valorDeposito');
+      const valor = parseFloat(valorInput.value);
+      if (!valor || valor < 1) {
+        alert("O valor mínimo para depósito é R$ 1,00.");
+        valorInput.focus();
+        return;
+      }
+
+      try {
+        const response = await fetch("../gerar_pix_bspay.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ valor })
+        });
+        const data = await response.json();
+
+        if (data.erro) {
+          alert(data.erro);
+          return;
+        }
+        
+        if (data.qrcode) {
+          abrirQRMode(data.qrcode);
+        } else {
+          alert('Não foi possível obter o código PIX. Tente novamente.');
+        }
+
+      } catch (error) {
+        console.error('Erro na requisição:', error);
+        alert('Ocorreu um erro ao gerar o código Pix. Verifique sua conexão e tente novamente.');
+      }
+    }
+
+    // --- Carousel ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".carousel-slide");
+    const indicators = document.querySelectorAll(".indicator");
+    const totalSlides = slides.length;
+    let slideInterval;
+
+    function updateCarousel(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        updateCarousel(nextIndex);
+    }
+    
+    function goToSlide(index) {
+        updateCarousel(index);
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    slideInterval = setInterval(nextSlide, 5000);
+
+    // --- Fechar modais ao clicar fora ---
+    modalDeposito.addEventListener('click', (e) => {
+        if (e.target === modalDeposito) fecharDeposito();
+    });
+    qrMode.addEventListener('click', (e) => {
+        if (e.target === qrMode) fecharQRMode();
+    });
+
+  </script>
+</body>
+</html>

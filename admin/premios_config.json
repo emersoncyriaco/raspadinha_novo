@@ -1,0 +1,8 @@
+{
+    "permitir": {
+        "50": true,
+        "100": true,
+        "200": true,
+        "500": true
+    }
+}

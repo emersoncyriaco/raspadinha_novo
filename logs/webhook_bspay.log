@@ -1,0 +1,546 @@
+[2025-08-01 22:45:09] Webhook recebido - Data: {
+    "raw_input": "{\"requestBody\":{\"transactionType\":\"RECEIVEPIX\",\"transactionId\":\"101b1a3249364730a15emdtevgw1544v\",\"external_id\":\"DEP_1_1754088282_7000\",\"amount\":5,\"paymentType\":\"PIX\",\"status\":\"PAID\",\"dateApproval\":\"2025-08-01 19:45:08\",\"creditParty\":{\"name\":\"admin\",\"email\":\"admin@admin.com\",\"taxId\":\"01619363690\"},\"debitParty\":{\"bank\":\"BSPAY SOLUCOES DE PAGAMENTOS LTDA\",\"taxId\":\"46.872.831\\\/0001-54\"}}}",
+    "headers": {
+        "Content-Type": "application\/json",
+        "Accept": "*\/*",
+        "Content-Length": "388",
+        "Connection": "close",
+        "X-Forwarded-For": "138.117.216.145",
+        "X-Real-Ip": "138.117.216.145",
+        "X-Forwarded-Host": "raspoupixbr.site",
+        "Host": "raspoupixbr.site"
+    }
+}
+[2025-08-01 22:45:09] Dados decodificados - Data: {
+    "requestBody": {
+        "transactionType": "RECEIVEPIX",
+        "transactionId": "101b1a3249364730a15emdtevgw1544v",
+        "external_id": "DEP_1_1754088282_7000",
+        "amount": 5,
+        "paymentType": "PIX",
+        "status": "PAID",
+        "dateApproval": "2025-08-01 19:45:08",
+        "creditParty": {
+            "name": "admin",
+            "email": "admin@admin.com",
+            "taxId": "01619363690"
+        },
+        "debitParty": {
+            "bank": "BSPAY SOLUCOES DE PAGAMENTOS LTDA",
+            "taxId": "46.872.831\/0001-54"
+        }
+    }
+}
+[2025-08-01 22:45:09] Usando formato requestBody - Data: {
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "101b1a3249364730a15emdtevgw1544v",
+    "external_id": "DEP_1_1754088282_7000",
+    "amount": 5,
+    "paymentType": "PIX",
+    "status": "PAID",
+    "dateApproval": "2025-08-01 19:45:08",
+    "creditParty": {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "taxId": "01619363690"
+    },
+    "debitParty": {
+        "bank": "BSPAY SOLUCOES DE PAGAMENTOS LTDA",
+        "taxId": "46.872.831\/0001-54"
+    }
+}
+[2025-08-01 22:45:09] Dados extraídos - Data: {
+    "external_id": "DEP_1_1754088282_7000",
+    "amount": 5,
+    "status": "PAID",
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "101b1a3249364730a15emdtevgw1544v"
+}
+[2025-08-01 22:45:09] Busca depósito - Data: {
+    "external_id": "DEP_1_1754088282_7000",
+    "found": "sim",
+    "deposit_data": {
+        "id": 16,
+        "user_id": 1,
+        "amount": "5.00",
+        "status": "pendente",
+        "payment_id": null,
+        "created_at": "2025-08-01 22:44:42",
+        "updated_at": "2025-08-01 22:44:42",
+        "external_id": "DEP_1_1754088282_7000"
+    }
+}
+[2025-08-01 22:45:09] Depósito aprovado com sucesso - Data: {
+    "user_id": 1,
+    "amount": 5,
+    "external_id": "DEP_1_1754088282_7000",
+    "transaction_id": "101b1a3249364730a15emdtevgw1544v"
+}
+[2025-08-01 22:49:49] Webhook recebido - Data: {
+    "raw_input": "{\"requestBody\":{\"transactionType\":\"RECEIVEPIX\",\"transactionId\":\"067ac5f149f38d51040amdtf1s3m4s9r\",\"external_id\":\"DEP_1_1754088576_3862\",\"amount\":5,\"paymentType\":\"PIX\",\"status\":\"PAID\",\"dateApproval\":\"2025-08-01 19:49:47\",\"creditParty\":{\"name\":\"admin\",\"email\":\"admin@admin.com\",\"taxId\":\"23133124706\"},\"debitParty\":{\"bank\":\"BSPAY SOLUCOES DE PAGAMENTOS LTDA\",\"taxId\":\"46.872.831\\\/0001-54\"}}}",
+    "headers": {
+        "Content-Type": "application\/json",
+        "Accept": "*\/*",
+        "Content-Length": "388",
+        "Connection": "close",
+        "X-Forwarded-For": "138.117.216.145",
+        "X-Real-Ip": "138.117.216.145",
+        "X-Forwarded-Host": "raspoupixbr.site",
+        "Host": "raspoupixbr.site"
+    }
+}
+[2025-08-01 22:49:49] Dados decodificados - Data: {
+    "requestBody": {
+        "transactionType": "RECEIVEPIX",
+        "transactionId": "067ac5f149f38d51040amdtf1s3m4s9r",
+        "external_id": "DEP_1_1754088576_3862",
+        "amount": 5,
+        "paymentType": "PIX",
+        "status": "PAID",
+        "dateApproval": "2025-08-01 19:49:47",
+        "creditParty": {
+            "name": "admin",
+            "email": "admin@admin.com",
+            "taxId": "23133124706"
+        },
+        "debitParty": {
+            "bank": "BSPAY SOLUCOES DE PAGAMENTOS LTDA",
+            "taxId": "46.872.831\/0001-54"
+        }
+    }
+}
+[2025-08-01 22:49:49] Usando formato requestBody - Data: {
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "067ac5f149f38d51040amdtf1s3m4s9r",
+    "external_id": "DEP_1_1754088576_3862",
+    "amount": 5,
+    "paymentType": "PIX",
+    "status": "PAID",
+    "dateApproval": "2025-08-01 19:49:47",
+    "creditParty": {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "taxId": "23133124706"
+    },
+    "debitParty": {
+        "bank": "BSPAY SOLUCOES DE PAGAMENTOS LTDA",
+        "taxId": "46.872.831\/0001-54"
+    }
+}
+[2025-08-01 22:49:49] Dados extraídos - Data: {
+    "external_id": "DEP_1_1754088576_3862",
+    "amount": 5,
+    "status": "PAID",
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "067ac5f149f38d51040amdtf1s3m4s9r"
+}
+[2025-08-01 22:49:49] Busca depósito - Data: {
+    "external_id": "DEP_1_1754088576_3862",
+    "found": "sim",
+    "deposit_data": {
+        "id": 17,
+        "user_id": 1,
+        "amount": "5.00",
+        "status": "pendente",
+        "payment_id": null,
+        "created_at": "2025-08-01 22:49:37",
+        "updated_at": "2025-08-01 22:49:37",
+        "external_id": "DEP_1_1754088576_3862"
+    }
+}
+[2025-08-01 22:49:49] Depósito aprovado com sucesso - Data: {
+    "user_id": 1,
+    "amount": 5,
+    "external_id": "DEP_1_1754088576_3862",
+    "transaction_id": "067ac5f149f38d51040amdtf1s3m4s9r"
+}
+[2025-08-01 22:51:10] Webhook recebido - Data: {
+    "raw_input": "{\"requestBody\":{\"transactionType\":\"RECEIVEPIX\",\"transactionId\":\"8f269c33821a284d8fb3mdtf3i32313u\",\"external_id\":\"DEP_1_1754088657_8959\",\"amount\":10,\"paymentType\":\"PIX\",\"status\":\"PAID\",\"dateApproval\":\"2025-08-01 19:51:08\",\"creditParty\":{\"name\":\"admin\",\"email\":\"admin@admin.com\",\"taxId\":\"49440747862\"},\"debitParty\":{\"bank\":\"BSPAY SOLUCOES DE PAGAMENTOS LTDA\",\"taxId\":\"46.872.831\\\/0001-54\"}}}",
+    "headers": {
+        "Content-Type": "application\/json",
+        "Accept": "*\/*",
+        "Content-Length": "389",
+        "Connection": "close",
+        "X-Forwarded-For": "138.117.216.145",
+        "X-Real-Ip": "138.117.216.145",
+        "X-Forwarded-Host": "raspoupixbr.site",
+        "Host": "raspoupixbr.site"
+    }
+}
+[2025-08-01 22:51:10] Dados decodificados - Data: {
+    "requestBody": {
+        "transactionType": "RECEIVEPIX",
+        "transactionId": "8f269c33821a284d8fb3mdtf3i32313u",
+        "external_id": "DEP_1_1754088657_8959",
+        "amount": 10,
+        "paymentType": "PIX",
+        "status": "PAID",
+        "dateApproval": "2025-08-01 19:51:08",
+        "creditParty": {
+            "name": "admin",
+            "email": "admin@admin.com",
+            "taxId": "49440747862"
+        },
+        "debitParty": {
+            "bank": "BSPAY SOLUCOES DE PAGAMENTOS LTDA",
+            "taxId": "46.872.831\/0001-54"
+        }
+    }
+}
+[2025-08-01 22:51:10] Usando formato requestBody - Data: {
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "8f269c33821a284d8fb3mdtf3i32313u",
+    "external_id": "DEP_1_1754088657_8959",
+    "amount": 10,
+    "paymentType": "PIX",
+    "status": "PAID",
+    "dateApproval": "2025-08-01 19:51:08",
+    "creditParty": {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "taxId": "49440747862"
+    },
+    "debitParty": {
+        "bank": "BSPAY SOLUCOES DE PAGAMENTOS LTDA",
+        "taxId": "46.872.831\/0001-54"
+    }
+}
+[2025-08-01 22:51:10] Dados extraídos - Data: {
+    "external_id": "DEP_1_1754088657_8959",
+    "amount": 10,
+    "status": "PAID",
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "8f269c33821a284d8fb3mdtf3i32313u"
+}
+[2025-08-01 22:51:10] Busca depósito - Data: {
+    "external_id": "DEP_1_1754088657_8959",
+    "found": "sim",
+    "deposit_data": {
+        "id": 18,
+        "user_id": 1,
+        "amount": "10.00",
+        "status": "pendente",
+        "payment_id": null,
+        "created_at": "2025-08-01 22:50:57",
+        "updated_at": "2025-08-01 22:50:57",
+        "external_id": "DEP_1_1754088657_8959"
+    }
+}
+[2025-08-01 22:51:10] Depósito aprovado com sucesso - Data: {
+    "user_id": 1,
+    "amount": 10,
+    "external_id": "DEP_1_1754088657_8959",
+    "transaction_id": "8f269c33821a284d8fb3mdtf3i32313u"
+}
+[2025-08-01 23:02:08] Webhook recebido - Data: {
+    "raw_input": "{\"requestBody\":{\"transactionType\":\"RECEIVEPIX\",\"transactionId\":\"d8e67e07a149bb1d3919mdtfhcupwmy4\",\"external_id\":\"DEP_1_1754089302_1166\",\"amount\":10,\"paymentType\":\"PIX\",\"status\":\"PAID\",\"dateApproval\":\"2025-08-01 20:02:06\",\"creditParty\":{\"name\":\"admin\",\"email\":\"admin@admin.com\",\"taxId\":\"23886365824\"},\"debitParty\":{\"bank\":\"PIXUP SOLUCOES DE PAGAMENTOS LTDA\",\"taxId\":\"59.667.922\\\/0001-08\"}}}",
+    "headers": {
+        "Content-Type": "application\/json",
+        "Accept": "*\/*",
+        "Content-Length": "389",
+        "Connection": "close",
+        "X-Forwarded-For": "138.117.216.143",
+        "X-Real-Ip": "138.117.216.143",
+        "X-Forwarded-Host": "raspoupixbr.site",
+        "Host": "raspoupixbr.site"
+    }
+}
+[2025-08-01 23:02:08] Dados decodificados - Data: {
+    "requestBody": {
+        "transactionType": "RECEIVEPIX",
+        "transactionId": "d8e67e07a149bb1d3919mdtfhcupwmy4",
+        "external_id": "DEP_1_1754089302_1166",
+        "amount": 10,
+        "paymentType": "PIX",
+        "status": "PAID",
+        "dateApproval": "2025-08-01 20:02:06",
+        "creditParty": {
+            "name": "admin",
+            "email": "admin@admin.com",
+            "taxId": "23886365824"
+        },
+        "debitParty": {
+            "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+            "taxId": "59.667.922\/0001-08"
+        }
+    }
+}
+[2025-08-01 23:02:08] Usando formato requestBody - Data: {
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "d8e67e07a149bb1d3919mdtfhcupwmy4",
+    "external_id": "DEP_1_1754089302_1166",
+    "amount": 10,
+    "paymentType": "PIX",
+    "status": "PAID",
+    "dateApproval": "2025-08-01 20:02:06",
+    "creditParty": {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "taxId": "23886365824"
+    },
+    "debitParty": {
+        "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+        "taxId": "59.667.922\/0001-08"
+    }
+}
+[2025-08-01 23:02:08] Dados extraídos - Data: {
+    "external_id": "DEP_1_1754089302_1166",
+    "amount": 10,
+    "status": "PAID",
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "d8e67e07a149bb1d3919mdtfhcupwmy4"
+}
+[2025-08-01 23:02:08] Busca depósito - Data: {
+    "external_id": "DEP_1_1754089302_1166",
+    "found": "sim",
+    "deposit_data": {
+        "id": 19,
+        "user_id": 1,
+        "amount": "10.00",
+        "status": "pendente",
+        "payment_id": null,
+        "created_at": "2025-08-01 23:01:43",
+        "updated_at": "2025-08-01 23:01:43",
+        "external_id": "DEP_1_1754089302_1166"
+    }
+}
+[2025-08-01 23:02:08] Depósito aprovado com sucesso - Data: {
+    "user_id": 1,
+    "amount": 10,
+    "external_id": "DEP_1_1754089302_1166",
+    "transaction_id": "d8e67e07a149bb1d3919mdtfhcupwmy4"
+}
+[2025-08-01 23:04:15] Webhook recebido - Data: {
+    "raw_input": "{\"requestBody\":{\"transactionType\":\"RECEIVEPIX\",\"transactionId\":\"b1f1d02046e2612388b0mdtfkb9dqcfx\",\"external_id\":\"DEP_1_1754089441_3970\",\"amount\":9,\"paymentType\":\"PIX\",\"status\":\"PAID\",\"dateApproval\":\"2025-08-01 20:04:11\",\"creditParty\":{\"name\":\"admin\",\"email\":\"admin@admin.com\",\"taxId\":\"03474818090\"},\"debitParty\":{\"bank\":\"PIXUP SOLUCOES DE PAGAMENTOS LTDA\",\"taxId\":\"59.667.922\\\/0001-08\"}}}",
+    "headers": {
+        "Content-Type": "application\/json",
+        "Accept": "*\/*",
+        "Content-Length": "388",
+        "Connection": "close",
+        "X-Forwarded-For": "138.117.216.143",
+        "X-Real-Ip": "138.117.216.143",
+        "X-Forwarded-Host": "raspoupixbr.site",
+        "Host": "raspoupixbr.site"
+    }
+}
+[2025-08-01 23:04:15] Dados decodificados - Data: {
+    "requestBody": {
+        "transactionType": "RECEIVEPIX",
+        "transactionId": "b1f1d02046e2612388b0mdtfkb9dqcfx",
+        "external_id": "DEP_1_1754089441_3970",
+        "amount": 9,
+        "paymentType": "PIX",
+        "status": "PAID",
+        "dateApproval": "2025-08-01 20:04:11",
+        "creditParty": {
+            "name": "admin",
+            "email": "admin@admin.com",
+            "taxId": "03474818090"
+        },
+        "debitParty": {
+            "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+            "taxId": "59.667.922\/0001-08"
+        }
+    }
+}
+[2025-08-01 23:04:15] Usando formato requestBody - Data: {
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "b1f1d02046e2612388b0mdtfkb9dqcfx",
+    "external_id": "DEP_1_1754089441_3970",
+    "amount": 9,
+    "paymentType": "PIX",
+    "status": "PAID",
+    "dateApproval": "2025-08-01 20:04:11",
+    "creditParty": {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "taxId": "03474818090"
+    },
+    "debitParty": {
+        "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+        "taxId": "59.667.922\/0001-08"
+    }
+}
+[2025-08-01 23:04:15] Dados extraídos - Data: {
+    "external_id": "DEP_1_1754089441_3970",
+    "amount": 9,
+    "status": "PAID",
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "b1f1d02046e2612388b0mdtfkb9dqcfx"
+}
+[2025-08-01 23:04:15] Busca depósito - Data: {
+    "external_id": "DEP_1_1754089441_3970",
+    "found": "sim",
+    "deposit_data": {
+        "id": 20,
+        "user_id": 1,
+        "amount": "9.00",
+        "status": "pendente",
+        "payment_id": null,
+        "created_at": "2025-08-01 23:04:01",
+        "updated_at": "2025-08-01 23:04:01",
+        "external_id": "DEP_1_1754089441_3970"
+    }
+}
+[2025-08-01 23:04:15] Depósito aprovado com sucesso - Data: {
+    "user_id": 1,
+    "amount": 9,
+    "external_id": "DEP_1_1754089441_3970",
+    "transaction_id": "b1f1d02046e2612388b0mdtfkb9dqcfx"
+}
+[2025-08-01 23:08:52] Webhook recebido - Data: {
+    "raw_input": "{\"requestBody\":{\"transactionType\":\"RECEIVEPIX\",\"transactionId\":\"9a7731d1d2a87526d87amdtfq2t22uxb\",\"external_id\":\"DEP_1_1754089709_5746\",\"amount\":8,\"paymentType\":\"PIX\",\"status\":\"PAID\",\"dateApproval\":\"2025-08-01 20:08:50\",\"creditParty\":{\"name\":\"admin\",\"email\":\"admin@admin.com\",\"taxId\":\"11939914558\"},\"debitParty\":{\"bank\":\"PIXUP SOLUCOES DE PAGAMENTOS LTDA\",\"taxId\":\"59.667.922\\\/0001-08\"}}}",
+    "headers": {
+        "Content-Type": "application\/json",
+        "Accept": "*\/*",
+        "Content-Length": "388",
+        "Connection": "close",
+        "X-Forwarded-For": "138.117.216.143",
+        "X-Real-Ip": "138.117.216.143",
+        "X-Forwarded-Host": "raspoupixbr.site",
+        "Host": "raspoupixbr.site"
+    }
+}
+[2025-08-01 23:08:52] Dados decodificados - Data: {
+    "requestBody": {
+        "transactionType": "RECEIVEPIX",
+        "transactionId": "9a7731d1d2a87526d87amdtfq2t22uxb",
+        "external_id": "DEP_1_1754089709_5746",
+        "amount": 8,
+        "paymentType": "PIX",
+        "status": "PAID",
+        "dateApproval": "2025-08-01 20:08:50",
+        "creditParty": {
+            "name": "admin",
+            "email": "admin@admin.com",
+            "taxId": "11939914558"
+        },
+        "debitParty": {
+            "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+            "taxId": "59.667.922\/0001-08"
+        }
+    }
+}
+[2025-08-01 23:08:52] Usando formato requestBody - Data: {
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "9a7731d1d2a87526d87amdtfq2t22uxb",
+    "external_id": "DEP_1_1754089709_5746",
+    "amount": 8,
+    "paymentType": "PIX",
+    "status": "PAID",
+    "dateApproval": "2025-08-01 20:08:50",
+    "creditParty": {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "taxId": "11939914558"
+    },
+    "debitParty": {
+        "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+        "taxId": "59.667.922\/0001-08"
+    }
+}
+[2025-08-01 23:08:52] Dados extraídos - Data: {
+    "external_id": "DEP_1_1754089709_5746",
+    "amount": 8,
+    "status": "PAID",
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "9a7731d1d2a87526d87amdtfq2t22uxb"
+}
+[2025-08-01 23:08:52] Busca depósito - Data: {
+    "external_id": "DEP_1_1754089709_5746",
+    "found": "sim",
+    "deposit_data": {
+        "id": 21,
+        "user_id": 1,
+        "amount": "8.00",
+        "status": "pendente",
+        "payment_id": null,
+        "created_at": "2025-08-01 23:08:30",
+        "updated_at": "2025-08-01 23:08:30",
+        "external_id": "DEP_1_1754089709_5746"
+    }
+}
+[2025-08-01 23:08:52] Depósito aprovado com sucesso - Data: {
+    "user_id": 1,
+    "amount": 8,
+    "external_id": "DEP_1_1754089709_5746",
+    "transaction_id": "9a7731d1d2a87526d87amdtfq2t22uxb"
+}
+[2025-08-01 23:13:45] Webhook recebido - Data: {
+    "raw_input": "{\"requestBody\":{\"transactionType\":\"RECEIVEPIX\",\"transactionId\":\"0e31e72423354ccefc11mdtfwixe5kpb\",\"external_id\":\"DEP_1_1754090010_9347\",\"amount\":7,\"paymentType\":\"PIX\",\"status\":\"PAID\",\"dateApproval\":\"2025-08-01 20:13:43\",\"creditParty\":{\"name\":\"admin\",\"email\":\"admin@admin.com\",\"taxId\":\"02117869262\"},\"debitParty\":{\"bank\":\"PIXUP SOLUCOES DE PAGAMENTOS LTDA\",\"taxId\":\"59.667.922\\\/0001-08\"}}}",
+    "headers": {
+        "Content-Type": "application\/json",
+        "Accept": "*\/*",
+        "Content-Length": "388",
+        "Connection": "close",
+        "X-Forwarded-For": "138.117.216.143",
+        "X-Real-Ip": "138.117.216.143",
+        "X-Forwarded-Host": "raspoupixbr.site",
+        "Host": "raspoupixbr.site"
+    }
+}
+[2025-08-01 23:13:45] Dados decodificados - Data: {
+    "requestBody": {
+        "transactionType": "RECEIVEPIX",
+        "transactionId": "0e31e72423354ccefc11mdtfwixe5kpb",
+        "external_id": "DEP_1_1754090010_9347",
+        "amount": 7,
+        "paymentType": "PIX",
+        "status": "PAID",
+        "dateApproval": "2025-08-01 20:13:43",
+        "creditParty": {
+            "name": "admin",
+            "email": "admin@admin.com",
+            "taxId": "02117869262"
+        },
+        "debitParty": {
+            "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+            "taxId": "59.667.922\/0001-08"
+        }
+    }
+}
+[2025-08-01 23:13:45] Usando formato requestBody - Data: {
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "0e31e72423354ccefc11mdtfwixe5kpb",
+    "external_id": "DEP_1_1754090010_9347",
+    "amount": 7,
+    "paymentType": "PIX",
+    "status": "PAID",
+    "dateApproval": "2025-08-01 20:13:43",
+    "creditParty": {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "taxId": "02117869262"
+    },
+    "debitParty": {
+        "bank": "PIXUP SOLUCOES DE PAGAMENTOS LTDA",
+        "taxId": "59.667.922\/0001-08"
+    }
+}
+[2025-08-01 23:13:45] Dados extraídos - Data: {
+    "external_id": "DEP_1_1754090010_9347",
+    "amount": 7,
+    "status": "PAID",
+    "transactionType": "RECEIVEPIX",
+    "transactionId": "0e31e72423354ccefc11mdtfwixe5kpb"
+}
+[2025-08-01 23:13:45] Busca depósito - Data: {
+    "external_id": "DEP_1_1754090010_9347",
+    "found": "sim",
+    "deposit_data": {
+        "id": 22,
+        "user_id": 1,
+        "amount": "7.00",
+        "status": "pendente",
+        "payment_id": null,
+        "created_at": "2025-08-01 23:13:31",
+        "updated_at": "2025-08-01 23:13:31",
+        "external_id": "DEP_1_1754090010_9347"
+    }
+}
+[2025-08-01 23:13:45] Depósito aprovado com sucesso - Data: {
+    "user_id": 1,
+    "amount": 7,
+    "external_id": "DEP_1_1754090010_9347",
+    "transaction_id": "0e31e72423354ccefc11mdtfwixe5kpb"
+}

@@ -1,0 +1,18 @@
+RewriteEngine On
+RewriteBase /
+
+
+RewriteCond %{REQUEST_URI} ^/uploads/ [NC,OR]
+
+RewriteCond %{REQUEST_URI} ^/uploads$ [NC]
+RewriteRule .* - [L] # Termina o processamento das regras para a pasta 'uploads'
+
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.php[\s?] [NC]
+RewriteRule ^(.*)\.php$ /$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)$ $1.php [L]
+
+RewriteRule ^$ inicio.php [L] 

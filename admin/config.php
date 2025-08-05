@@ -1,0 +1,1 @@
+<?php header("Location: forcar_premio.php"); exit; ?>

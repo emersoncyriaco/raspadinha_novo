@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+# Desabilitar redirecionamentos temporariamente para teste
+# RewriteRule ^$ inicio.php [L] 

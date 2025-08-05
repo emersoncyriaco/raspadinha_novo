@@ -1,0 +1,67 @@
+[2025-08-02 01:15:43] Token Request - Data: {
+    "url": "https:\/\/api.pixupbr.com\/v2\/oauth\/token",
+    "http_code": 401,
+    "curl_error": "",
+    "response": "{\"statusCode\":401,\"message\":\"Credenciais inv\\u00e1lidas\"}"
+}
+[2025-08-02 01:16:14] Token Request - Data: {
+    "url": "https:\/\/api.pixupbr.com\/v2\/oauth\/token",
+    "http_code": 200,
+    "curl_error": "",
+    "response": "{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIyMmUyOTRjOWJiYjUzMjdkZDFjZGU1YjRjNWM2YzUwMCIsInN1YiI6ImE4MWEwOGRkZDkzZGEyNDdhNjAzMmQ0MjNjZmJhN2UwIiwiaWF0IjoxNzU0MDg5MzAzLCJleHAiOjE3NTQwOTExMDN9.Mygq-LP8FROgqUg4zEg67v0IiZYYsYI6WlLoVn7P_rg\",\"expires_in\":930}"
+}
+[2025-08-02 01:16:14] Teste Split - Data: {
+    "payload_completo": {
+        "amount": 10,
+        "external_id": "TESTE_SPLIT_1754090173",
+        "payerQuestion": "Teste de split",
+        "payer": {
+            "name": "Teste Split",
+            "document": "12345678901",
+            "email": "teste@teste.com"
+        },
+        "postbackUrl": "https:\/\/raspoupixbr.site\/bspay\/callback",
+        "split": [
+            {
+                "username": "stive22",
+                "percentageSplit": "30"
+            }
+        ]
+    },
+    "split_config": [
+        {
+            "username": "stive22",
+            "percentageSplit": "30"
+        }
+    ],
+    "split_count": 1
+}
+[2025-08-02 01:16:14] QR Code Request - Data: {
+    "url": "https:\/\/api.pixupbr.com\/v2\/pix\/qrcode",
+    "payload": {
+        "amount": 10,
+        "external_id": "TESTE_SPLIT_1754090173",
+        "payerQuestion": "Teste de split",
+        "payer": {
+            "name": "Teste Split",
+            "document": "12345678901",
+            "email": "teste@teste.com"
+        },
+        "postbackUrl": "https:\/\/raspoupixbr.site\/bspay\/callback",
+        "split": [
+            {
+                "username": "stive22",
+                "percentageSplit": "30"
+            }
+        ]
+    },
+    "http_code": 200,
+    "curl_error": "",
+    "response": "{\n    \"transactionId\": \"edc893b150fe035d5af0mdtg00hw1r4z\",\n    \"external_id\": \"TESTE_SPLIT_1754090173\",\n    \"status\": \"PENDING\",\n    \"amount\": 10,\n    \"calendar\": {\n        \"expiration\": 3000,\n        \"dueDate\": \"2025-08-01 08:16:14\"\n    },\n    \"debtor\": {\n        \"name\": \"Teste Split\",\n        \"document\": \"09738935164\"\n    },\n    \"qrcode\": \"00020126820014br.gov.bcb.pix2560pix.treeal.com\\\/qr\\\/v3\\\/at\\\/7002fad4-4dc5-4afa-ba65-36cc22de893f5204000053039865802BR5918ORBION_GAMING_LTDA6004BODO62070503***6304F414\"\n}",
+    "split_config": [
+        {
+            "username": "stive22",
+            "percentageSplit": "30"
+        }
+    ]
+}

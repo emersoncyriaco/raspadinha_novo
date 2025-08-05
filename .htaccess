@@ -1,3 +1,29 @@
 RewriteEngine On
-RewriteRule ^$ public/ [L]
-RewriteRule (.*) public/$1 [L]
+RewriteBase /
+
+# Redirecionar a raiz do site para inicio.php
+RewriteRule ^$ /inicio.php [L,R=301]
+
+# Redirecionar index.php para inicio.php
+RewriteRule ^index\.php$ /inicio.php [L,R=301]
+
+# Redirecionar index.html para inicio.php
+RewriteRule ^index\.html$ /inicio.php [L,R=301]
+
+# Permitir acesso direto a uploads
+RewriteCond %{REQUEST_URI} ^/uploads/ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/uploads$ [NC]
+RewriteRule .* - [L]
+
+# Remover .php da URL para arquivos PHP
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.php[\s?] [NC]
+RewriteRule ^(.*)\.php$ /$1 [R=301,L]
+
+# Adicionar .php automaticamente
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)$ $1.php [L]
+
+# Garantir que inicio.php seja sempre acessível
+RewriteRule ^inicio$ /inicio.php [L,R=301]
