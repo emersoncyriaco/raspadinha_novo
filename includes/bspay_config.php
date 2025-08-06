@@ -6,6 +6,7 @@ class BSPayConfig {
     private static $webhook_url = 'https://www.spacevegas.site/webhook_bspay_novo.php';
     
     public static function getClientId() {
+        error_log("Arquivo executado: classe linha 9" . __FILE__);
         return self::$client_id;
     }
     
@@ -14,6 +15,7 @@ class BSPayConfig {
     }
     
     public static function getWebhookUrl() {
+        error_log("Arquivo executado: Classe linha 18" . __FILE__);
         return self::$webhook_url;
     }
     

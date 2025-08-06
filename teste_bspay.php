@@ -6,6 +6,7 @@ echo "<h1>Teste da Integração BSPay</h1>";
 
 try {
     // Testa a obtenção do token
+    error_log("Arquivo executado: " . __FILE__);
     echo "<h2>1. Testando obtenção de token...</h2>";
     $bspay = new BSPayAPI(BSPayConfig::getClientId(), BSPayConfig::getClientSecret());
     $token = $bspay->obterToken();

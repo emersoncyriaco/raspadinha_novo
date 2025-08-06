@@ -28,7 +28,7 @@ $external_id = 'DEP_' . $user_id . '_' . time() . '_' . rand(1000, 9999);
 
 try {
     $bspay = new BSPayAPI(BSPayConfig::getClientId(), BSPayConfig::getClientSecret());
-
+    error_log("Arquivo executado: " . __FILE__);
     $dados_qr = [
         'amount' => $valor,
         'external_id' => $external_id,
