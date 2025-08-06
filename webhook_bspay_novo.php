@@ -16,7 +16,7 @@ function logWebhook($message, $data = null) {
     if (!file_exists('logs')) {
         mkdir('logs', 0755, true);
     }
-    
+    error_log("Arquivo: " . __FILE__ . "LOG recebido".$logMessage);
     file_put_contents('logs/webhook_bspay.log', $logMessage, FILE_APPEND | LOCK_EX);
 }
 
@@ -27,8 +27,12 @@ header('Content-Type: application/json');
 $input = file_get_contents('php://input');
 logWebhook("Webhook recebido", ['raw_input' => $input, 'headers' => getallheaders()]);
 
+error_log("Arquivo:". __FILE__.">Linha 30>>>> Dados recebidos do webhook:".$input);
+
 // Decodifica o JSON
 $data = json_decode($input, true);
+
+error_log("Arquivo:". __FILE__.">Linha 35>>>> Dados decodificado o json do webhook:".$data);
 
 if (!$data) {
     logWebhook("Erro: JSON inválido");

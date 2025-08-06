@@ -27,18 +27,18 @@ $user = $result->fetch_assoc();
 $external_id = 'DEP_' . $user_id . '_' . time() . '_' . rand(1000, 9999);
 
 try {
-    $bspay = new BSPayAPI(BSPayConfig::getClientId(), BSPayConfig::getClientSecret());
     error_log("Arquivo executado: " . __FILE__);
+    $bspay = new BSPayAPI(BSPayConfig::getClientId(), BSPayConfig::getClientSecret());
     $dados_qr = [
         'amount' => $valor,
         'external_id' => $external_id,
+        'postbackUrl' => BSPayConfig::getWebhookUrl(),
         'payerQuestion' => 'Depósito na conta - ' . $user['name'],
         'payer' => [
             'name' => $user['name'],
             'document' => '00000000000', // CPF fictício
             'email' => $user['email']
         ],
-        'postbackUrl' => BSPayConfig::getWebhookUrl()
     ];
 
     $response = $bspay->gerarQRCode($dados_qr);
