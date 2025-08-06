@@ -1,12 +1,7 @@
 <?php
 require_once 'includes/db.php';
 
-file_put_contents('logs/webhook_debug_raw.log', file_get_contents('php://input'));
-
-file_put_contents('logs/webhook_debug_headers.log', json_encode([
-    'method' => $_SERVER['REQUEST_METHOD'],
-    'headers' => getallheaders()
-], JSON_PRETTY_PRINT));
+error_log("Arquivo executado: " . __FILE__);
 
 // Função para log de debug
 function logWebhook($message, $data = null) {
@@ -56,16 +51,7 @@ if (isset($data['requestBody'])) {
 
 // Extrai os dados do pagamento
 $external_id = $eventData['external_id'] ?? '';
-$rawAmount = $eventData['amount'] ?? 0;
-
-// Corrige possíveis vírgulas ou strings
-if (is_string($rawAmount)) {
-    $rawAmount = str_replace(',', '.', $rawAmount); // BSPay pode enviar como "15,00"
-}
-
-logWebhook("Estrutura completa recebida DDD", $data);
-
-$amount = floatval($rawAmount);
+$amount = floatval($eventData['amount'] ?? 0);
 $status = $eventData['status'] ?? '';
 $transactionType = $eventData['transactionType'] ?? '';
 $transactionId = $eventData['transactionId'] ?? '';

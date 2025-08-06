@@ -1,6 +1,8 @@
 <?php
 require_once 'includes/db.php';
 
+error_log("Arquivo executado: " . __FILE__);
+
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (

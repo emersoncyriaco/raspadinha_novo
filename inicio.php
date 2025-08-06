@@ -7,6 +7,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+error_log("Teste Arquivo executado: " . __FILE__);
+
 $usuarioLogado = isset($_SESSION['usuario_id']);
 $saldo = 0;
 $nomeUsuario = '';

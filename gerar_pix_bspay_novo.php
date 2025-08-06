@@ -79,7 +79,8 @@ try {
         BSPayConfig::getClientId(),
         BSPayConfig::getClientSecret()
     );
-    
+    error_log("Arquivo executado: " . __FILE__);
+    error_log("postbackUrl: " . BSPayConfig::getWebhookUrl());
     // Dados para gerar o PIX
     $pixData = [
         'amount' => $amount,
