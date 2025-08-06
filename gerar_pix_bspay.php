@@ -28,6 +28,7 @@ $external_id = 'DEP_' . $user_id . '_' . time() . '_' . rand(1000, 9999);
 
 try {
     error_log("Arquivo executado: " . __FILE__);
+    error_log("Webhook link é: " . BSPayConfig::getWebhookUrl());
     $bspay = new BSPayAPI(BSPayConfig::getClientId(), BSPayConfig::getClientSecret());
     $dados_qr = [
         'amount' => $valor,
