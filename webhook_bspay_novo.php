@@ -49,7 +49,16 @@ if (isset($data['requestBody'])) {
 
 // Extrai os dados do pagamento
 $external_id = $eventData['external_id'] ?? '';
-$amount = floatval($eventData['amount'] ?? 0);
+$rawAmount = $eventData['amount'] ?? 0;
+
+// Corrige possíveis vírgulas ou strings
+if (is_string($rawAmount)) {
+    $rawAmount = str_replace(',', '.', $rawAmount); // BSPay pode enviar como "15,00"
+}
+
+logWebhook("Estrutura completa recebida DDD", $data);
+
+$amount = floatval($rawAmount);
 $status = $eventData['status'] ?? '';
 $transactionType = $eventData['transactionType'] ?? '';
 $transactionId = $eventData['transactionId'] ?? '';
