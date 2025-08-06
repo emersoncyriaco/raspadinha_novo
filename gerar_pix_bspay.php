@@ -32,7 +32,7 @@ try {
     $dados_qr = [
         'amount' => $valor,
         'external_id' => $external_id,
-        'postbackUrl' => BSPayConfig::getWebhookUrl()
+        'postbackUrl' => BSPayConfig::getWebhookUrl(),
         'payerQuestion' => 'Depósito na conta - ' . $user['name'],
         'payer' => [
             'name' => $user['name'],
