@@ -1,8 +1,8 @@
 <?php
 class BSPayConfig {
     // Credenciais BSPay - PRODUÇÃO
-    private static $client_id = 'emersoncyriaco_4877065027429403';
-    private static $client_secret = 'f9d9b8ff96d4c12d1e5c0fa829807e7d6a6ac32a86db8d19257a6ade53b3e67e';
+    private static $client_id = 'emersoncyriaco_2901109771229168';
+    private static $client_secret = '0fb8f1d16c74dce41a4121114b6bc82cbbd8e3e7d2a712f03176e67ffa7aa1e9';
     private static $webhook_url = 'https://www.spacevegas.site/webhook_bspay_novo.php';
     
     public static function getClientId() {
