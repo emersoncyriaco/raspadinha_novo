@@ -44,9 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Inicializa a API BSPay
             $bspay = new BSPayAPI(BSPayConfig::getClientId(), BSPayConfig::getClientSecret());
-
-            error_log("Arquivo executado: " . __FILE__);
-            error_log("postbackUrl: " . BSPayConfig::getWebhookUrl());
             
             // Dados para gerar o QR Code
             $dados_qr = [
@@ -58,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'document' => '00000000000',
                     'email' => $user['email']
                 ],
-                'postbackUrl' => BSPayConfig::getWebhookUrl()
+                'postbackUrl' => 'mock_webhook_url'
             ];
             
             // Gera o QR Code

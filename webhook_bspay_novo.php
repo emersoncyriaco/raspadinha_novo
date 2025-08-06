@@ -1,8 +1,6 @@
 <?php
 require_once 'includes/db.php';
 
-error_log("Arquivo executado: " . __FILE__);
-
 // Função para log de debug
 function logWebhook($message, $data = null) {
     $timestamp = date('Y-m-d H:i:s');
@@ -16,36 +14,19 @@ function logWebhook($message, $data = null) {
     if (!file_exists('logs')) {
         mkdir('logs', 0755, true);
     }
-    error_log("Arquivo: " . __FILE__ . "LOG recebido".$logMessage);
+    
     file_put_contents('logs/webhook_bspay.log', $logMessage, FILE_APPEND | LOCK_EX);
 }
 
-
-$method = $_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN';
-$headers = getallheaders();
-$input = file_get_contents('php://input');
-
-logWebhook("TESTE>>>>> Requisição recebida", [
-    'method' => $method,
-    'headers' => $headers,
-    'raw_input' => $input,
-    'query_params' => $_GET,
-    'post_params' => $_POST
-]);
-
 // Configurar headers para resposta
-// header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 // Recebe os dados do webhook
 $input = file_get_contents('php://input');
 logWebhook("Webhook recebido", ['raw_input' => $input, 'headers' => getallheaders()]);
 
-error_log("Arquivo:". __FILE__.">Linha 30>>>> Dados recebidos do webhook:".$input);
-
 // Decodifica o JSON
 $data = json_decode($input, true);
-
-error_log("Arquivo:". __FILE__.">Linha 35>>>> Dados decodificado o json do webhook:".$data);
 
 if (!$data) {
     logWebhook("Erro: JSON inválido");

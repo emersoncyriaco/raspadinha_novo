@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $error = 'Credenciais BSPay parecem inválidas!';
             } else {
                 try {
-                    error_log("Arquivo executado: " . __FILE__);
                     BSPayConfig::setClientId($client_id);
                     BSPayConfig::setClientSecret($client_secret);
                     BSPayConfig::setWebhookUrl($webhook_url);
@@ -119,7 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Busca configurações atuais
-error_log("Arquivo executado: Linha 122 " . __FILE__);
 $current_client_id = BSPayConfig::getClientId();
 $current_client_secret = BSPayConfig::getClientSecret();
 $current_webhook_url = BSPayConfig::getWebhookUrl();
