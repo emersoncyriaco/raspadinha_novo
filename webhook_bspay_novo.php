@@ -20,8 +20,21 @@ function logWebhook($message, $data = null) {
     file_put_contents('logs/webhook_bspay.log', $logMessage, FILE_APPEND | LOCK_EX);
 }
 
+
+$method = $_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN';
+$headers = getallheaders();
+$input = file_get_contents('php://input');
+
+logWebhook("TESTE>>>>> Requisição recebida", [
+    'method' => $method,
+    'headers' => $headers,
+    'raw_input' => $input,
+    'query_params' => $_GET,
+    'post_params' => $_POST
+]);
+
 // Configurar headers para resposta
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 
 // Recebe os dados do webhook
 $input = file_get_contents('php://input');
