@@ -44,6 +44,8 @@ try {
 
     $response = $bspay->gerarQRCode($dados_qr);
 
+    error_log("QR CODE GERADO: " . $response);
+
     error_log("Resposta da BSPay para Pix: " . json_encode($response));
 
     if (isset($response['qrcode'])) {
