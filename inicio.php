@@ -1518,7 +1518,7 @@ if ($usuarioLogado) {
         </button>
 
         <!-- Botão Indique -->
-        <button onclick="<?= $usuarioLogado ? "window.location.href='affiliate_dashboard'" : "abrirModal('login')" ?>" class="group flex flex-col items-center justify-center gap-1 text-center text-inherit select-none flex-1 transition-transform active:scale-90">
+        <button onclick="<?= $usuarioLogado ? "window.location.href='affiliate_dashboard.php'" : "abrirModal('login')" ?>" class="group flex flex-col items-center justify-center gap-1 text-center text-inherit select-none flex-1 transition-transform active:scale-90">
             <div>
                 <svg viewBox="0 0 640 512" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" class="size-5">
                     <path d="M96 128a128 128 0 1 1 256 0 128 128 0 1 1-256 0zM0 482.3C0 383.8 79.8 304 178.3 304h91.4c98.5 0 178.3 79.8 178.3 178.3 0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312v-64h-64c-13.3 0-24-10.7-24-24s10.7-24 24-24h64v-64c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24-24h-64v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"></path>
@@ -1528,7 +1528,7 @@ if ($usuarioLogado) {
         </button>
 
         <!-- Botão Perfil -->
-        <button onclick="<?= $usuarioLogado ? "window.location.href='perfil'" : "abrirModal('login')" ?>" class="group flex flex-col items-center justify-center gap-1 text-center text-inherit select-none flex-1 transition-transform active:scale-90">
+        <button onclick="<?= $usuarioLogado ? "window.location.href='perfil.php'" : "abrirModal('login')" ?>" class="group flex flex-col items-center justify-center gap-1 text-center text-inherit select-none flex-1 transition-transform active:scale-90">
             <div>
                 <svg viewBox="0 0 448 512" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" class="size-5">
                     <path d="M224 256a128 128 0 1 0 0-256 128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3 0 498.7 13.3 512 29.7 512h388.6c16.4 0 29.7-13.3 29.7-29.7 0-98.5-79.8-178.3-178.3-178.3z"></path>
