@@ -1,6 +1,13 @@
 <?php
 require_once 'includes/db.php';
 
+file_put_contents('logs/webhook_debug_raw.log', file_get_contents('php://input'));
+
+file_put_contents('logs/webhook_debug_headers.log', json_encode([
+    'method' => $_SERVER['REQUEST_METHOD'],
+    'headers' => getallheaders()
+], JSON_PRETTY_PRINT));
+
 // Função para log de debug
 function logWebhook($message, $data = null) {
     $timestamp = date('Y-m-d H:i:s');
