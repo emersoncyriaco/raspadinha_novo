@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $client_id_result = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_id'");
-if ($client_id_result && $row = $result->fetch_assoc()) {
+if ($client_id_result && $row = $client_id_result->fetch_assoc()) {
     $gatway_client_id = $row['valor'];
 } else {
     $gatway_client_id = null; // ou valor padrão
