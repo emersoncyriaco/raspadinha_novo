@@ -609,7 +609,7 @@ $banners_result = $conn->query("SELECT * FROM banners ORDER BY position, sort_or
                             <input type="hidden" name="action" value="update_settings">
                             
                             <!-- Configurações de Comissão -->
-                            <div class="setting-group">
+                            <!-- <div class="setting-group">
                                 <h4 class="mb-3">
                                     <i class="bi bi-percent"></i> Configurações de Gatweay
                                 </h4>
@@ -625,7 +625,7 @@ $banners_result = $conn->query("SELECT * FROM banners ORDER BY position, sort_or
                                         <input type="text" class="form-control" name="client_secret" value="<?php echo $gatway_client_secret; ?>">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="setting-group">
                                 <h4 class="mb-3">
