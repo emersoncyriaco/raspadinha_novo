@@ -207,6 +207,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+$gatway_client_id = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_id'");
+$gatway_client_secret = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_secret'");
+
+
 $settings_result = $conn->query("SELECT * FROM global_settings ORDER BY setting_key");
 $settings = [];
 while ($row = $settings_result->fetch_assoc()) {
@@ -605,6 +609,30 @@ $banners_result = $conn->query("SELECT * FROM banners ORDER BY position, sort_or
                             <input type="hidden" name="action" value="update_settings">
                             
                             <!-- Configurações de Comissão -->
+                            <div class="setting-group">
+                                <h4 class="mb-3">
+                                    <i class="bi bi-percent"></i> Configurações de Gatweay
+                                </h4>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Client_id</label>
+                                        <input type="text" class="form-control" name="client_id" value="<?php echo $gatway_client_id; ?>">
+                                        <div class="setting-description">
+                                            <?php echo $settings['default_revshare_rate']['description']; ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Client_secret</label>
+                                        <input type="text" class="form-control" name="client_secret" value="<?php echo $gatway_client_secret; ?>">
+                                        <div class="setting-description">
+                                            <?php echo $settings['commission_delay_hours']['description']; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="setting-group">
                                 <h4 class="mb-3">
                                     <i class="bi bi-percent"></i> Configurações de Comissão
