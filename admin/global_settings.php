@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 session_start();
 require_once '../includes/db.php';
 
@@ -210,11 +207,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$result = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_id'");
-if ($result && $row = $result->fetch_assoc()) {
+$client_id_result = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_id'");
+if ($client_id_result && $row = $result->fetch_assoc()) {
     $gatway_client_id = $row['valor'];
-} else {
-    $gatway_client_id = null; // ou valor padrão
 } else {
     $gatway_client_id = null; // ou valor padrão
 }
