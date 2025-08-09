@@ -207,8 +207,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$gatway_client_id = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_id'");
-$gatway_client_secret = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_secret'");
+// $gatway_client_id = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_id'");
+// $gatway_client_secret = $conn->query("SELECT valor FROM configuracoes WHERE chave='bspay_client_secret'");
 
 
 $settings_result = $conn->query("SELECT * FROM global_settings ORDER BY setting_key");
