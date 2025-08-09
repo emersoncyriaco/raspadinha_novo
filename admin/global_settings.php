@@ -616,19 +616,13 @@ $banners_result = $conn->query("SELECT * FROM banners ORDER BY position, sort_or
                                 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Client_id</label>
+                                        <label class="form-label">Client ID</label>
                                         <input type="text" class="form-control" name="client_id" value="<?php echo $gatway_client_id; ?>">
-                                        <div class="setting-description">
-                                            <?php echo $settings['default_revshare_rate']['description']; ?>
-                                        </div>
                                     </div>
                                     
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Client_secret</label>
+                                        <label class="form-label">Client Secret</label>
                                         <input type="text" class="form-control" name="client_secret" value="<?php echo $gatway_client_secret; ?>">
-                                        <div class="setting-description">
-                                            <?php echo $settings['commission_delay_hours']['description']; ?>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
